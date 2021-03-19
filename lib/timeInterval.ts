@@ -1,6 +1,5 @@
 import * as joda from "@js-joda/core";
 import * as datetime from "./datetime";
-import { logger } from "../logger";
 
 export type TimeInterval = {
   start: joda.ZonedDateTime;
@@ -101,26 +100,16 @@ export const minusMultiple = (
   interval: TimeInterval,
   toMinusIntervals: TimeInterval[]
 ): TimeInterval[] => {
-  logger.debug(
-    "minusMultiple(",
-    stringify(interval),
-    toMinusIntervals.map(stringify),
-    ")"
-  );
   let stack = [interval];
   for (const toMinusInterval of toMinusIntervals) {
     const tempStack = [];
     while (stack.length > 0) {
       const subInterval = stack.pop();
-      logger.trace("subInterval", stringify(subInterval));
-      logger.trace("minusing", stringify(toMinusInterval));
       const result = minus(subInterval, toMinusInterval);
-      logger.trace("minus result", result.map(stringify));
       tempStack.push(...result);
     }
     stack.push(...tempStack);
   }
-  logger.debug("returning", stack.map(stringify));
   return stack;
 };
 
