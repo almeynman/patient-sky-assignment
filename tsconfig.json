@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "target": "es5",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "core/**/*",
+    "lib/**/*",
+    "config.ts",
+    "index.ts"
+, "logger.ts"  ]
+}
